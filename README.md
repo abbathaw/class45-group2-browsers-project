@@ -73,9 +73,7 @@ Tasks could look like this, using the [MoSCoW](https://en.wikipedia.org/wiki/MoS
 
 You should create tasks that fit with your goal, these tasks serve just as an example.
 
-<<<<<<< HEAD
 Just for test
-=======
 
-I'm a new change in Pull request Abdullah
->>>>>>> master
+
+I'm a new dadchange in Pull request Abdullah
