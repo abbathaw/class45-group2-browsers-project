@@ -56,5 +56,25 @@ export const quizData = {
       ],
     },
     // Add more questions here
+    {
+      text: 'String',
+      answers: {
+        a: 'String',
+        b: 'String',
+        c: 'String'
+      },
+      correct: '',
+      selected: null,
+      links: [
+        {
+          text: 'String',
+          href: 'link'
+        },
+        {
+          text: 'String',
+          href: 'link'
+        }
+      ]
+    },
   ],
 };

@@ -13,6 +13,8 @@ export const initQuestionPage = () => {
 
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
+  document.title = `Question ${quizData.currentQuestionIndex + 1}: ${currentQuestion.text}`;
+
   const questionElement = createQuestionElement(currentQuestion.text);
 
   userInterface.appendChild(questionElement);

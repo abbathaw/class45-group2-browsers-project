@@ -13,11 +13,6 @@ To run this project locally you will need to open `index.html` in your browser u
 There are no dependencies needed to run the website, everything is prepared to work with vanilla JavaScript. However, if you want to install prettier for this project then run (generally you always want to do this if you see a `package.json` file):
 
 - `npm install`
-## Installing Dependencies 2
-
-There are no dependencies needed to run the website, everything is prepared to work with vanilla JavaScript. However, if you want to install prettier for this project then run (generally you always want to do this if you see a `package.json` file):
-
-- `npm install`
 
 # Structure
 
