@@ -1,4 +1,5 @@
 import { ANSWERS_LIST_ID } from '../constants.js';
+import { SKIP_QUESTION_BUTTON_ID } from '../constants.js';
 import { NEXT_QUESTION_BUTTON_ID } from '../constants.js';
 
 /**
@@ -14,6 +15,11 @@ export const createQuestionElement = (question) => {
 
     <ul id="${ANSWERS_LIST_ID}">
     </ul>
+
+    <button id="${SKIP_QUESTION_BUTTON_ID}"> 
+    Skip 
+   </button>
+
 
     <button id="${NEXT_QUESTION_BUTTON_ID}">
       Next question
