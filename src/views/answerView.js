@@ -26,6 +26,9 @@ const selectAnswer = (e) => {
     selectedButton.dataset.indexAnswer ===
     quizData.questions[quizData.currentQuestionIndex].correct;
 
+  quizData.questions[quizData.currentQuestionIndex].selected =
+    selectedButton.dataset.indexAnswer;
+
   if (isAnswerCorrect) {
     changeBtnColor(selectedButton, 'correct-answer');
   } else {
