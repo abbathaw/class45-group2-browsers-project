@@ -14,26 +14,122 @@ export const quizData = {
   // the questions in the quiz
   questions: [
     {
-      text: 'What are the different ways to declare a JS variable?',
+      text:
+        'What is the official name of the Netherlands in its native language?',
       answers: {
-        a: 'constant, let, variable',
-        b: 'var, const, let, function',
-        c: 'var, let, const',
+        a: 'Nederlanden',
+        b: 'Nederlands',
+        c: 'Nederland',
+        d: 'Holland',
       },
       correct: 'c',
       selected: null,
     },
     {
-      text: 'What does `typeof` do?',
+      text:
+        'Which Dutch city is famous for its canals, historic houses, and vibrant cultural scene?',
       answers: {
-        a: 'changes the type of a primitive value',
-        b: 'returns a string describing the type of a value',
-        c: 'determines if a value is primitive',
-        d: 'can tell the difference between arrays and objects',
+        a: 'Rotterdam',
+        b: 'Utrecht',
+        c: 'Amsterdam',
+        d: 'The Hague',
+      },
+      correct: 'c',
+      selected: null,
+    },
+    {
+      text:
+        'The Netherlands is known for its extensive system of protective dikes, dams, and barriers. What is the term commonly used to describe this system?',
+      answers: {
+        a: 'Waterland',
+        b: 'Delta Works',
+        c: 'Polder Plan',
+        d: 'Floodgate Project',
       },
       correct: 'b',
       selected: null,
     },
-    // Add more questions here
+    // {
+    //   text:
+    //     "Which Dutch artist painted 'The Night Watch,' one of the most famous works in the Rijksmuseum in Amsterdam?",
+    //   answers: {
+    //     a: 'Vincent van Gogh',
+    //     b: 'Rembrandt',
+    //     c: 'Piet Mondrian',
+    //     d: 'Johannes Vermeer',
+    //   },
+    //   correct: 'b',
+    //   selected: null,
+    // },
+    // {
+    //   text: 'What is the currency of the Netherlands?',
+    //   answers: {
+    //     a: 'Euro',
+    //     b: 'Guilder',
+    //     c: 'Franc',
+    //     d: 'Mark',
+    //   },
+    //   correct: 'a',
+    //   selected: null,
+    // },
+    // {
+    //   text:
+    //     'The Netherlands is known for its production of vibrant, colorful flower fields. What flower is particularly associated with the country?',
+    //   answers: {
+    //     a: 'Roses',
+    //     b: 'Sunflowers',
+    //     c: 'Tulips',
+    //     d: 'Daisies',
+    //   },
+    //   correct: 'c',
+    //   selected: null,
+    // },
+    // {
+    //   text:
+    //     'Which Dutch scientist is famous for his contributions to microbiology, including the discovery of bacteria and microscopy techniques?',
+    //   answers: {
+    //     a: 'Antonie van Leeuwenhoek',
+    //     b: 'Christiaan Huygens',
+    //     c: 'René Descartes',
+    //     d: 'Johannes Kepler',
+    //   },
+    //   correct: 'a',
+    //   selected: null,
+    // },
+    // {
+    //   text: 'The Dutch Royal Family belongs to which dynasty?',
+    //   answers: {
+    //     a: 'Bourbon',
+    //     b: 'Habsburg',
+    //     c: 'Orange-Nassau',
+    //     d: 'Tudor',
+    //   },
+    //   correct: 'c',
+    //   selected: null,
+    // },
+    // {
+    //   text:
+    //     'What is the name of the Dutch parliamentary body responsible for making and passing laws?',
+    //   answers: {
+    //     a: 'Royal Council',
+    //     b: 'Parliament of the Netherlands',
+    //     c: 'States General',
+    //     d: 'Dutch Congress',
+    //   },
+    //   correct: 'c',
+    //   selected: null,
+    // },
+    // {
+    //   text:
+    //     "Which Dutch city is renowned for its high-tech industries, including ASML, one of the world's leading semiconductor equipment manufacturers?",
+    //   answers: {
+    //     a: 'Eindhoven',
+    //     b: 'Groningen',
+    //     c: 'Maastricht',
+    //     d: 'Nijmegen',
+    //   },
+    //   correct: 'a',
+    //   selected: null,
+    // },
   ],
 };
