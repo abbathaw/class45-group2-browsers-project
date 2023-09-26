@@ -15,3 +15,17 @@
 ul {
   list-style: none;
 }
+
+.answer-btn {
+  width: 500px;
+  height: 40px;
+  margin: 5px;
+}
+
+.correct-answer {
+  background-color: green;
+}
+
+.wrong-answer {
+  background-color: red;
+}

@@ -22,16 +22,6 @@ export const quizData = {
       },
       correct: 'c',
       selected: null,
-      links: [
-        {
-          text: 'javascript.info',
-          href: 'https://javascript.info/variables',
-        },
-        {
-          text: 'Tyler McGinnis',
-          href: 'https://ui.dev/var-let-const/',
-        },
-      ],
     },
     {
       text: 'What does `typeof` do?',
@@ -43,17 +33,6 @@ export const quizData = {
       },
       correct: 'b',
       selected: null,
-      links: [
-        {
-          text: 'javascript.info',
-          href: 'https://javascript.info/types#type-typeof',
-        },
-        {
-          text: 'MDN',
-          href:
-            'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof',
-        },
-      ],
     },
     // Add more questions here
   ],
