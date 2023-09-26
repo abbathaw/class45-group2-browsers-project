@@ -23,9 +23,15 @@ ul {
 }
 
 .correct-answer {
-  background-color: green;
+  background-color: #79ac78;
+  border: none;
+  color: white;
+  transition: all 1s linear;
 }
 
 .wrong-answer {
-  background-color: red;
+  background-color: #d83f31;
+}
+.correct-answer .transition {
+  background: #79ac78;
 }
