@@ -1,5 +1,6 @@
-import { ANSWERS_LIST_ID } from '../constants.js';
+import { ANSWERS_LIST_ID, SCORE_ID } from '../constants.js';
 import { NEXT_QUESTION_BUTTON_ID } from '../constants.js';
+import { quizData } from '../data.js';
 
 /**
  * Create a full question element
@@ -18,6 +19,10 @@ export const createQuestionElement = (question) => {
     <button id="${NEXT_QUESTION_BUTTON_ID}">
       Next question
     </button>
+
+    <div id="${SCORE_ID}">
+      SCORE: ${quizData.score}
+    </div>
   `;
 
   return element;
