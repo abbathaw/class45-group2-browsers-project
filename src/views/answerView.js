@@ -3,6 +3,10 @@
  * @returns {Element}
  */
 import { quizData } from '../data.js';
+import {
+  correctAnswersResults,
+  scoreRealTimeUpdate,
+} from '../pages/questionPage.js';
 
 export const createAnswerElement = (key, answerText) => {
   const element = document.createElement('li');
@@ -31,6 +35,10 @@ const selectAnswer = (e) => {
 
   if (isAnswerCorrect) {
     changeBtnColor(selectedButton, 'correct-answer');
+    quizData.score += 10;
+    scoreRealTimeUpdate();
+    quizData.correctAnswers++;
+    correctAnswersResults();
   } else {
     changeBtnColor(selectedButton, 'wrong-answer');
   }
