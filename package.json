@@ -1,6 +1,7 @@
 {
   "name": "js-quiz-starter",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "prettier:write": "prettier --write .",
     "prettier:check": "prettier --check ."
