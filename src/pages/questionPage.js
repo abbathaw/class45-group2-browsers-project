@@ -1,6 +1,8 @@
 import {
   ANSWERS_LIST_ID,
+  CORRECT_ANSWERS_ID,
   NEXT_QUESTION_BUTTON_ID,
+  SCORE_ID,
   USER_INTERFACE_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
@@ -33,4 +35,23 @@ const nextQuestion = () => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
 
   initQuestionPage();
+};
+
+//SCORE update in real-time
+const scoreUpdate = () => (quizData.score = 0);
+
+scoreUpdate();
+
+export const scoreRealTimeUpdate = () => {
+  const scoreDisplay = document.getElementById(SCORE_ID);
+  scoreDisplay.textContent = `SCORE: ${quizData.score}`;
+};
+
+//CORRECT ANSWERS result
+const correctAnswers = () => (quizData.correctAnswers = 0);
+correctAnswers();
+
+export const correctAnswersResults = () => {
+  const correctAnswersDisplay = document.getElementById(CORRECT_ANSWERS_ID);
+  correctAnswersDisplay.textContent = `CORRECT ANSWERS: ${quizData.correctAnswers}`;
 };
