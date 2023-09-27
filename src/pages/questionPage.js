@@ -8,11 +8,9 @@ import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
 
-// const capitalLetterCorrectAnswer = `${currentQuestion.correct}`.toUpperCase();
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
-
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   const questionElement = createQuestionElement(currentQuestion.text);
@@ -24,15 +22,15 @@ export const initQuestionPage = () => {
   for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
     const answerElement = createAnswerElement(key, answerText);
     answersListElement.appendChild(answerElement);
+
+    document
+      .getElementById(NEXT_QUESTION_BUTTON_ID)
+      .addEventListener('click', nextQuestion);
+
+    document
+      .getElementById(SKIP_QUESTION_BUTTON_ID)
+      .addEventListener('click', skipQuestion);
   }
-
-  document
-    .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', nextQuestion);
-
-  document
-    .getElementById(SKIP_QUESTION_BUTTON_ID)
-    .addEventListener('click', skipQuestion);
 };
 
 const nextQuestion = () => {
