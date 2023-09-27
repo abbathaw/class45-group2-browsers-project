@@ -7,6 +7,7 @@ import {
   correctAnswersResults,
   scoreRealTimeUpdate,
 } from '../pages/questionPage.js';
+import { SKIP_QUESTION_BUTTON_ID } from '../constants.js';
 
 export const createAnswerElement = (key, answerText) => {
   const element = document.createElement('li');
@@ -32,6 +33,8 @@ const selectAnswer = (e) => {
 
   quizData.questions[quizData.currentQuestionIndex].selected =
     selectedButton.dataset.indexAnswer;
+
+  document.getElementById(SKIP_QUESTION_BUTTON_ID).disabled = true;
 
   if (isAnswerCorrect) {
     changeBtnColor(selectedButton, 'correct-answer');
