@@ -5,10 +5,12 @@ import {
   SCORE_ID,
   SKIP_QUESTION_BUTTON_ID,
   USER_INTERFACE_ID,
+  FINISH_QUIZ_BUTTON_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
+import { showResultPage } from '../pages/resultPage.js';
 
 // const capitalLetterCorrectAnswer = `${currentQuestion.correct}`.toUpperCase();
 export const initQuestionPage = () => {
@@ -35,11 +37,31 @@ export const initQuestionPage = () => {
   document
     .getElementById(SKIP_QUESTION_BUTTON_ID)
     .addEventListener('click', skipQuestion);
+
+  document
+    .getElementById(FINISH_QUIZ_BUTTON_ID)
+    .addEventListener('click', showResultPage);
+
+  if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+    document
+      .getElementById(SKIP_QUESTION_BUTTON_ID)
+      .addEventListener('click', showResultPage);
+  }
+  if (quizData.currentQuestionIndex >= quizData.questions.length - 2) {
+    document
+      .getElementById(NEXT_QUESTION_BUTTON_ID)
+      .addEventListener('click', disableNextButton);
+  }
 };
 
 const nextQuestion = () => {
   quizData.currentQuestionIndex += 1;
   initQuestionPage();
+};
+
+const disableNextButton = () => {
+  let nextButton = document.getElementById(NEXT_QUESTION_BUTTON_ID);
+  nextButton.disabled = true;
 };
 
 // #14: SKIP BUTTON
@@ -62,7 +84,7 @@ const skipQuestion = () => {
     position: fixed;
     left: 50%;
     top: 50%;
-    font-size: 229px;
+    font-size: 200px;
     transform: translate(-50%, -50%);
     z-index: 1984;
   `;
@@ -70,6 +92,9 @@ const skipQuestion = () => {
     // to remove after 2.5 seconds
     setTimeout(() => {
       document.body.removeChild(skipBox);
+      if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+        disableNextButton();
+      }
     }, 2500);
   }
 
@@ -92,5 +117,6 @@ correctAnswers();
 
 export const correctAnswersResults = () => {
   const correctAnswersDisplay = document.getElementById(CORRECT_ANSWERS_ID);
-  correctAnswersDisplay.textContent = `CORRECT ANSWERS: ${quizData.correctAnswers}`;
+  if (correctAnswersDisplay)
+    correctAnswersDisplay.textContent = `CORRECT ANSWERS: ${quizData.correctAnswers}`;
 };
