@@ -14,7 +14,7 @@ export const createAnswerElement = (key, answerText) => {
 
   element.appendChild(answerButton);
   answerButton.innerHTML = String.raw`
-    ${key}) ${answerText};
+    ${key}) ${answerText}
   `;
   answerButton.classList.add('btn');
   answerButton.classList.add('answer-btn');
@@ -54,6 +54,14 @@ const resetAnswerColorClasses = () => {
     (b) => {
       b.classList.remove('correct-answer');
       b.classList.remove('wrong-answer');
+      if (
+        b.dataset.indexAnswer ===
+        quizData.questions[quizData.currentQuestionIndex].correct
+      ) {
+        setTimeout(() => {
+          b.classList.add('correct-answer');
+        }, 500);
+      }
     }
   );
 };
