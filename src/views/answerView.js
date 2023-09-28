@@ -36,6 +36,14 @@ const selectAnswer = (e) => {
 
   document.getElementById(SKIP_QUESTION_BUTTON_ID).disabled = true;
 
+  if (quizData.questions[quizData.currentQuestionIndex].selected) {
+    Array.from(document.querySelectorAll('#answers-list li button')).forEach(
+      (b) => {
+        b.disabled = true;
+      }
+    );
+  }
+
   if (isAnswerCorrect) {
     changeBtnColor(selectedButton, 'correct-answer');
     quizData.score += 10;
