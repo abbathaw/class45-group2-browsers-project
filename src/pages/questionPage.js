@@ -3,34 +3,31 @@ import {
   NEXT_QUESTION_BUTTON_ID,
   USER_INTERFACE_ID,
 } from '../constants.js';
-import { createQuestionElement } from '../views/questionView.js';
+import { createQuestionAndAnswerElement, createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
+import { transitionQuestionWithFade } from './transition.js';
 
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
-  userInterface.innerHTML = '';
-
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
-
-  const questionElement = createQuestionElement(currentQuestion.text);
-
-  userInterface.appendChild(questionElement);
-
-  const answersListElement = document.getElementById(ANSWERS_LIST_ID);
-
-  for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
-    const answerElement = createAnswerElement(key, answerText);
-    answersListElement.appendChild(answerElement);
+const questionAnswerElement = createQuestionAndAnswerElement(currentQuestion)
+ 
+  if(quizData.currentQuestionIndex === 0){
+    userInterface.innerHTML = '';
+    userInterface.appendChild(questionAnswerElement);
   }
-
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', nextQuestion);
+    .addEventListener('click', ()=>nextQuestion(questionAnswerElement))
+
 };
 
-const nextQuestion = () => {
+export const nextQuestion = (currentQuestion) => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
 
+const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
+const questionAnswerElement = createQuestionAndAnswerElement(nextQuestion)
+  transitionQuestionWithFade(currentQuestion, questionAnswerElement );
   initQuestionPage();
 };
