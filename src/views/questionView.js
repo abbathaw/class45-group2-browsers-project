@@ -1,4 +1,4 @@
-import { ANSWERS_LIST_ID, SCORE_ID } from '../constants.js';
+import { ANSWERS_LIST_ID, SCORE_ID, TIMER_ID } from '../constants.js';
 import { SKIP_QUESTION_BUTTON_ID } from '../constants.js';
 import { NEXT_QUESTION_BUTTON_ID } from '../constants.js';
 import { FINISH_QUIZ_BUTTON_ID } from '../constants.js';
@@ -20,7 +20,7 @@ export const createQuestionElement = (question) => {
 
     <button id="${SKIP_QUESTION_BUTTON_ID}"> 
     Skip 
-   </button>
+    </button>
 
     <button id="${NEXT_QUESTION_BUTTON_ID}">
       Next question
@@ -30,8 +30,12 @@ export const createQuestionElement = (question) => {
      Finish quiz
     </button>
 
- <div id="${SCORE_ID}">
+    <div id="${SCORE_ID}">
       SCORE: ${quizData.score}
+    </div>
+
+    <div id="${TIMER_ID}">
+      Start
     </div>
   `;
 
