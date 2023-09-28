@@ -41,9 +41,3 @@ export const selectAnswer = (selectedButton) => {
   disableButtons();
   storeAnswerInLocalStorage(selectedButton);
 };
-answerButton.addEventListener('click', () => {
-  selectAnswer(answerButton);
-  const answerListItem = document.createElement('li');
-  answerListItem.appendChild(answerButton);
-  return answerListItem;
-});
