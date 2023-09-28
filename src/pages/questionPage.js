@@ -54,6 +54,12 @@ export const initQuestionPage = () => {
       .getElementById(NEXT_QUESTION_BUTTON_ID)
       .addEventListener('click', disableNextButton);
   }
+
+  // * #13  REFRESH PAGE ANSWER ARE STILL AVAILABLE
+  const storedAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
+  storedAnswers[quizData.currentQuestionIndex] =
+    selectedButton.dataset.indexAnswer;
+  localStorage.setItem('userAnswers', JSON.stringify(storedAnswers));
 };
 export const selectAnswer = (e) => {
   const selectedButton = e.target;
@@ -117,7 +123,7 @@ const disableNextButton = () => {
   nextButton.disabled = true;
 };
 
-// #14: SKIP BUTTON
+// *  #14: SKIP BUTTON
 const skipQuestion = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
@@ -128,19 +134,7 @@ const skipQuestion = () => {
 
     skipBox.innerText = `🦉${currentQuestion.correct}`.toUpperCase();
 
-    skipBox.style.cssText = `
-    padding: 9%;
-    width: 29%;
-    background-color: #f56300;
-    font-family: 'SF Pro Text SF Pro Icons';
-    color: #0071e3;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    font-size: 200px;
-    transform: translate(-50%, -50%);
-    z-index: 1984;
-  `;
+    skipBox.style.cssText = `  font-size: 129px;`; // * need Style
 
     // to remove after 2.5 seconds
     setTimeout(() => {
