@@ -6,6 +6,7 @@ import {
   SKIP_QUESTION_BUTTON_ID,
   USER_INTERFACE_ID,
   FINISH_QUIZ_BUTTON_ID,
+  TIMER_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
@@ -29,6 +30,8 @@ export const initQuestionPage = () => {
     const answerElement = createAnswerElement(key, answerText);
     answersListElement.appendChild(answerElement);
   }
+
+  startTimer();
 
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
@@ -119,4 +122,27 @@ export const correctAnswersResults = () => {
   const correctAnswersDisplay = document.getElementById(CORRECT_ANSWERS_ID);
   if (correctAnswersDisplay)
     correctAnswersDisplay.textContent = `CORRECT ANSWERS: ${quizData.correctAnswers}`;
+};
+
+//TIMER
+let count = 15;
+let interval;
+
+const startTimer = () => {
+  count = 15;
+  clearInterval(interval);
+
+  interval = setInterval(function () {
+    document.getElementById(TIMER_ID).textContent = `TIMER: ${count} seconds`;
+    count--;
+    if (count === 0) {
+      clearInterval(interval);
+      document.getElementById(TIMER_ID).textContent = 'Out of time!';
+      if (disableNextButton) {
+        showResultPage();
+      } else {
+        nextQuestion();
+      }
+    }
+  }, 1000);
 };
