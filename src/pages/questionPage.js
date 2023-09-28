@@ -38,7 +38,7 @@ const nextQuestion = () => {
   initQuestionPage();
 };
 
-// #14: SKIP BUTTON
+// #14: SKIP BUTTON  {STYLE ?}
 const skipQuestion = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
@@ -47,26 +47,12 @@ const skipQuestion = () => {
 
     document.body.appendChild(skipBox);
 
-    skipBox.innerText = `🦉${currentQuestion.correct}`.toUpperCase();
+    skipBox.innerText = `${currentQuestion.correct}`.toUpperCase();
 
-    skipBox.style.cssText = `
-    padding: 9%;
-    width: 29%;
-    background-color: #f56300;
-    font-family: 'SF Pro Text SF Pro Icons';
-    color: #0071e3;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    font-size: 229px;
-    transform: translate(-50%, -50%);
-    z-index: 1984;
-  `;
-
-    // to remove after 2.5 seconds
+    // to remove after 2 seconds
     setTimeout(() => {
       document.body.removeChild(skipBox);
-    }, 2500);
+    }, 2000);
   }
 
   nextQuestion();
