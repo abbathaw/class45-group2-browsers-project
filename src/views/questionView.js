@@ -12,7 +12,13 @@ export const createQuestionElement = (question) => {
   const element = document.createElement('div');
 
   // I use String.raw just to get fancy colors for the HTML in VS Code.
+
   element.innerHTML = String.raw`
+    <div >
+    <p> YOU ARE ON ${quizData.currentQuestionIndex + 1}/${
+    quizData.questions.length
+  }</p>
+      </div>
     <h1>${question}</h1>
 
     <ul id="${ANSWERS_LIST_ID}">
