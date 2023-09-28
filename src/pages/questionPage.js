@@ -13,7 +13,6 @@ import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
 import { showResultPage } from '../pages/resultPage.js';
 
-// const capitalLetterCorrectAnswer = `${currentQuestion.correct}`.toUpperCase();
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
@@ -55,6 +54,57 @@ export const initQuestionPage = () => {
       .getElementById(NEXT_QUESTION_BUTTON_ID)
       .addEventListener('click', disableNextButton);
   }
+};
+export const selectAnswer = (e) => {
+  const selectedButton = e.target;
+  const isAnswerCorrect =
+    selectedButton.dataset.indexAnswer ===
+    quizData.questions[quizData.currentQuestionIndex].correct;
+
+  quizData.questions[quizData.currentQuestionIndex].selected =
+    selectedButton.dataset.indexAnswer;
+
+  document.getElementById(SKIP_QUESTION_BUTTON_ID).disabled = true;
+
+  if (quizData.questions[quizData.currentQuestionIndex].selected) {
+    Array.from(document.querySelectorAll('#answers-list li button')).forEach(
+      (b) => {
+        b.disabled = true;
+      }
+    );
+  }
+
+  if (isAnswerCorrect) {
+    changeBtnColor(selectedButton, 'correct-answer');
+    quizData.score += 10;
+    scoreRealTimeUpdate();
+    quizData.correctAnswers++;
+    correctAnswersResults();
+  } else {
+    changeBtnColor(selectedButton, 'wrong-answer');
+  }
+};
+
+const changeBtnColor = (button, colorClass) => {
+  resetAnswerColorClasses();
+  button.classList.add(colorClass);
+};
+
+const resetAnswerColorClasses = () => {
+  Array.from(document.querySelectorAll('#answers-list li button')).forEach(
+    (b) => {
+      b.classList.remove('correct-answer');
+      b.classList.remove('wrong-answer');
+      if (
+        b.dataset.indexAnswer ===
+        quizData.questions[quizData.currentQuestionIndex].correct
+      ) {
+        setTimeout(() => {
+          b.classList.add('correct-answer');
+        }, 500);
+      }
+    }
+  );
 };
 
 const nextQuestion = () => {
