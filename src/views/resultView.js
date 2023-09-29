@@ -1,10 +1,11 @@
-import { quizData } from '../data.js';
+import { getQuizData } from '../data.js';
 
+const quizData = getQuizData();
 export const createResultElement = () => {
   const element = document.createElement('div');
   element.classList.add('result-page-container');
 
-  const templete = `
+  const template = `
   <div class="correct-answer-number">
   <h2>NUMBER OF CORRECT ANSWERS: ${quizData.correctAnswers}/${quizData.questions.length}</h2>
  </div>
@@ -14,7 +15,7 @@ export const createResultElement = () => {
   </div>
  `;
 
-  element.innerHTML = templete;
+  element.innerHTML = template;
 
   return element;
 };

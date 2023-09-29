@@ -2,12 +2,15 @@ import { ANSWERS_LIST_ID, SCORE_ID, TIMER_ID } from '../constants.js';
 import { SKIP_QUESTION_BUTTON_ID } from '../constants.js';
 import { NEXT_QUESTION_BUTTON_ID } from '../constants.js';
 import { FINISH_QUIZ_BUTTON_ID } from '../constants.js';
-import { quizData } from '../data.js';
+import { getQuizData } from '../data.js';
 
 /**
  * Create a full question element
  * @returns {Element}
  */
+
+const quizData = getQuizData();
+
 export const createQuestionElement = (question) => {
   const element = document.createElement('div');
 
