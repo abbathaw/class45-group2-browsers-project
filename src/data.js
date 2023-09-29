@@ -8,7 +8,6 @@
     not by your logic
     not by your listeners
 */
-
 import { SAVE_NAME } from './constants.js';
 
 export const getQuizData = () => {

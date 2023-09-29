@@ -9,9 +9,8 @@ import {
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
-import { getQuizData, saveQuizData } from '../data.js';
-
 import { showResultPage } from '../pages/resultPage.js';
+import { getQuizData, saveQuizData } from '../data.js';
 
 const quizData = getQuizData();
 export const initQuestionPage = () => {
