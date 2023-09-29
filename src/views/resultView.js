@@ -1,4 +1,6 @@
-import { quizData } from '../data.js';
+import { getQuizData } from '../data.js';
+
+const quizData = getQuizData();
 
 export const createResultElement = () => {
   const element = document.createElement('div');

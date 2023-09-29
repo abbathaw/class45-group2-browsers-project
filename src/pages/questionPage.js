@@ -5,13 +5,15 @@ import {
   SKIP_QUESTION_BUTTON_ID,
   USER_INTERFACE_ID,
   FINISH_QUIZ_BUTTON_ID,
-  TIMER_ID,
+  TIMER_ID
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
 import { createAnswerElement } from '../views/answerView.js';
-import { quizData } from '../data.js';
+import { getQuizData, saveQuizData } from '../data.js';
 import { showResultPage } from '../pages/resultPage.js';
 
+
+const quizData = getQuizData();
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   userInterface.innerHTML = '';
@@ -54,11 +56,10 @@ export const initQuestionPage = () => {
       .addEventListener('click', disableNextButton);
   }
 
-  // * #13  REFRESH PAGE ANSWER ARE STILL AVAILABLE
-  const storedAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
-  storedAnswers[quizData.currentQuestionIndex] =
-    selectedButton.dataset.indexAnswer;
-  localStorage.setItem('userAnswers', JSON.stringify(storedAnswers));
+  if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+    disableNextButton();
+  }
+
 };
 export const selectAnswer = (e) => {
   const selectedButton = e.target;
@@ -113,6 +114,7 @@ const resetAnswerColorClasses = () => {
 
 const nextQuestion = () => {
   quizData.currentQuestionIndex += 1;
+  saveQuizData(quizData);
   initQuestionPage();
 };
 
