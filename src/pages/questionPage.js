@@ -1,6 +1,5 @@
 import {
   ANSWERS_LIST_ID,
-  CORRECT_ANSWERS_ID,
   NEXT_QUESTION_BUTTON_ID,
   SCORE_ID,
   SKIP_QUESTION_BUTTON_ID,
@@ -79,7 +78,6 @@ export const selectAnswer = (e) => {
     quizData.score += 10;
     scoreRealTimeUpdate();
     quizData.correctAnswers++;
-    correctAnswersResults();
   } else {
     changeBtnColor(selectedButton, 'wrong-answer');
   }
@@ -164,35 +162,33 @@ export const scoreRealTimeUpdate = () => {
   scoreDisplay.textContent = `SCORE: ${quizData.score}`;
 };
 
-//CORRECT ANSWERS result
+//CORRECT ANSWERS
 const correctAnswers = () => (quizData.correctAnswers = 0);
 correctAnswers();
 
-export const correctAnswersResults = () => {
-  const correctAnswersDisplay = document.getElementById(CORRECT_ANSWERS_ID);
-  if (correctAnswersDisplay)
-    correctAnswersDisplay.textContent = `CORRECT ANSWERS: ${quizData.correctAnswers}`;
-};
-
 //TIMER
-let count = 15;
+
+let count;
 let interval;
 
 const startTimer = () => {
-  count = 15;
+  count = 16;
   clearInterval(interval);
 
   interval = setInterval(function () {
-    document.getElementById(TIMER_ID).textContent = `TIMER: ${count} seconds`;
+    const timerElement = document.getElementById(TIMER_ID);
+    timerElement.textContent = `TIMER: ${count - 1} sec`;
     count--;
-    if (count === 0) {
+    if (count == 0) {
       clearInterval(interval);
-      document.getElementById(TIMER_ID).textContent = 'Out of time!';
-      if (disableNextButton) {
-        showResultPage();
-      } else {
-        nextQuestion();
-      }
+      timerElement.textContent = 'Out of time!';
+      setTimeout(() => {
+        if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+          showResultPage();
+        } else {
+          nextQuestion();
+        }
+      }, 1000);
     }
   }, 1000);
 };
