@@ -1,5 +1,4 @@
 import {
-  ANSWERS_LIST_ID,
   NEXT_QUESTION_BUTTON_ID,
   SCORE_ID,
   SKIP_QUESTION_BUTTON_ID,
@@ -8,32 +7,25 @@ import {
   TIMER_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
-import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
+import { transitionQuestionWithFade } from './transition.js';
 import { showResultPage } from '../pages/resultPage.js';
 
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
-  userInterface.innerHTML = '';
-
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
-
-  const questionElement = createQuestionElement(currentQuestion.text);
-
-  userInterface.appendChild(questionElement);
-
-  const answersListElement = document.getElementById(ANSWERS_LIST_ID);
-
-  for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
-    const answerElement = createAnswerElement(key, answerText);
-    answersListElement.appendChild(answerElement);
+  const questionAnswerElement = createQuestionElement(currentQuestion, quizData);
+ 
+  if(quizData.currentQuestionIndex === 0){
+    userInterface.innerHTML = '';
+    userInterface.appendChild(questionAnswerElement);
   }
-
-  startTimer();
 
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', nextQuestion);
+    .addEventListener('click', ()=>nextQuestion(questionAnswerElement));
+
+  startTimer();
 
   document
     .getElementById(SKIP_QUESTION_BUTTON_ID)
@@ -54,12 +46,9 @@ export const initQuestionPage = () => {
       .addEventListener('click', disableNextButton);
   }
 
-  // * #13  REFRESH PAGE ANSWER ARE STILL AVAILABLE
-  const storedAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
-  storedAnswers[quizData.currentQuestionIndex] =
-    selectedButton.dataset.indexAnswer;
-  localStorage.setItem('userAnswers', JSON.stringify(storedAnswers));
+  
 };
+
 export const selectAnswer = (e) => {
   const selectedButton = e.target;
   const isAnswerCorrect =
@@ -111,18 +100,13 @@ const resetAnswerColorClasses = () => {
   );
 };
 
-const nextQuestion = () => {
-  quizData.currentQuestionIndex += 1;
-  initQuestionPage();
-};
-
 const disableNextButton = () => {
   let nextButton = document.getElementById(NEXT_QUESTION_BUTTON_ID);
   nextButton.disabled = true;
 };
 
 // *  #14: SKIP BUTTON
-const skipQuestion = () => {
+export const skipQuestion = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   if (currentQuestion) {
@@ -186,3 +170,13 @@ const startTimer = () => {
     }
   }, 1000);
 };
+
+export const nextQuestion = (currentQuestion) => {
+  quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
+
+const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
+const questionAnswerElement = createQuestionElement(nextQuestion, quizData);
+  transitionQuestionWithFade(currentQuestion, questionAnswerElement );
+  initQuestionPage();
+};
+
