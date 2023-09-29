@@ -25,11 +25,44 @@ ul {
 }
 
 .correct-answer {
-  background-color: green;
+  background-color: #79ac78;
+  border: none;
+  color: white;
+  transition: all 1s linear;
 }
 
 .wrong-answer {
-  background-color: red;
+  background-color: #d83f31;
+}
+.correct-answer .transition {
+  background: #79ac78;
+}
+.result-score p {
+  text-align: center;
+  font-size: 16rem;
+  margin: 0;
+  font-family: cursive;
+  color: #3092cd;
+  background: #fcffea9e;
+  width: 27rem;
+  height: 27rem;
+  border: #6d7fd2 solid 10px;
+  border-radius: 50%;
+}
+
+.result-score h3 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 10px;
+  color: #d83f31;
+  font-family: math;
+}
+
+.correct-answer-number h2 {
+  color: #d83f31;
+  font-family: math;
+  letter-spacing: 0.2px;
+  font-weight: bold;
 }
 
 .question-fade-exit {
