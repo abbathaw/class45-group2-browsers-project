@@ -131,11 +131,13 @@ const skipQuestion = () => {
 
     document.body.appendChild(skipBox);
 
-    skipBox.innerText = `The right answer is: ${currentQuestion.correct}`.toUpperCase();
+    skipBox.innerText = `The right answer is: ${
+      currentQuestion.correct
+    } for question: ${quizData.currentQuestionIndex + 1}`;
 
     // * need Style
     skipBox.style.cssText = `    
-      font-size: 129px;
+      font-size: 29px;
       `;
 
     // to remove after 2.5 seconds
