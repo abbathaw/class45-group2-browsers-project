@@ -1,5 +1,4 @@
 import {
-  ANSWERS_LIST_ID,
   NEXT_QUESTION_BUTTON_ID,
   SCORE_ID,
   SKIP_QUESTION_BUTTON_ID,
@@ -7,8 +6,7 @@ import {
   FINISH_QUIZ_BUTTON_ID,
   TIMER_ID,
 } from '../constants.js';
-import { createQuestionAndAnswerElement, createQuestionElement } from '../views/questionView.js';
-import { createAnswerElement } from '../views/answerView.js';
+import { createQuestionElement } from '../views/questionView.js';
 import { quizData } from '../data.js';
 import { transitionQuestionWithFade } from './transition.js';
 import { showResultPage } from '../pages/resultPage.js';
@@ -16,29 +14,18 @@ import { showResultPage } from '../pages/resultPage.js';
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
-  //const questionElement = createQuestionElement(currentQuestion.text);
-  const questionAnswerElement = createQuestionAndAnswerElement(currentQuestion);
+  const questionAnswerElement = createQuestionElement(currentQuestion, quizData);
  
   if(quizData.currentQuestionIndex === 0){
     userInterface.innerHTML = '';
     userInterface.appendChild(questionAnswerElement);
   }
-  //const answersListElement = document.getElementById(ANSWERS_LIST_ID);
-
-  //for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
-   // const answerElement = createAnswerElement(key, answerText);
-    //answersListElement.appendChild(answerElement);
-  //}
 
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
     .addEventListener('click', ()=>nextQuestion(questionAnswerElement));
 
   startTimer();
-
-  //document
-   // .getElementById(NEXT_QUESTION_BUTTON_ID)
-   // .addEventListener('click', nextQuestion);
 
   document
     .getElementById(SKIP_QUESTION_BUTTON_ID)
@@ -113,18 +100,13 @@ const resetAnswerColorClasses = () => {
   );
 };
 
-//const nextQuestion = () => {
- // quizData.currentQuestionIndex += 1;
- // initQuestionPage();
-//};
-
 const disableNextButton = () => {
   let nextButton = document.getElementById(NEXT_QUESTION_BUTTON_ID);
   nextButton.disabled = true;
 };
 
 // *  #14: SKIP BUTTON
-const skipQuestion = () => {
+export const skipQuestion = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   if (currentQuestion) {
@@ -191,9 +173,9 @@ const startTimer = () => {
 
 export const nextQuestion = (currentQuestion) => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
-//}
+
 const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
-const questionAnswerElement = createQuestionAndAnswerElement(nextQuestion);
+const questionAnswerElement = createQuestionElement(nextQuestion, quizData);
   transitionQuestionWithFade(currentQuestion, questionAnswerElement );
   initQuestionPage();
 };
