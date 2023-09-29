@@ -1,9 +1,45 @@
+body{
+  background-image: url('https://images.unsplash.com/photo-1547750341-26482cf3a2ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Poppins, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#title{
+  font-size: 50px;
+}
+
+p{
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+button{
+  font-family: Poppins, sans-serif;
+  font-size: 20px;
+  top: 50%;
+  left: 3%;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+div{
+  width: 900px;
+}
+
 .centered {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-family: Poppins, sans-serif;
 }
 
 .scrollable {
