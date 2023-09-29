@@ -36,13 +36,13 @@ export const createQuestionElement = (question) => {
      Finish quiz
     </button>
 
-    <div id="${SCORE_ID}">
+    <p id="${SCORE_ID}">
       SCORE: ${quizData.score}
-    </div>
+    </p>
 
-    <div id="${TIMER_ID}">
+    <p id="${TIMER_ID}">
       Start
-    </div>
+    </p>
   `;
 
   return element;
