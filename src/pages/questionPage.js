@@ -151,7 +151,7 @@ let count;
 let interval;
 
 const startTimer = (currentQuestion) => {
-  count = 6;
+  count = 16;
   clearInterval(interval);
 
   interval = setInterval(function () {
