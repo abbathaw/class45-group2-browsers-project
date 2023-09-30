@@ -8,8 +8,27 @@
     not by your logic
     not by your listeners
 */
+import { SAVE_NAME } from './constants.js';
 
-export const quizData = {
+export const getQuizData = () => {
+  const savedQuizData = localStorage.getItem(SAVE_NAME); // get the saved data from localstorage
+  if (savedQuizData) {
+    // check if its available
+    return JSON.parse(savedQuizData); // parse from a JSON string to a JS object
+  } else {
+    return quizData;
+  }
+};
+
+export const saveQuizData = (dataToSave) => {
+  localStorage.setItem(SAVE_NAME, JSON.stringify(dataToSave));
+};
+
+export const resetLocalStorage = () => {
+  localStorage.clear();
+};
+
+const quizData = {
   currentQuestionIndex: 0,
   // the questions in the quiz
   questions: [

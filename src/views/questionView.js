@@ -8,6 +8,7 @@ import { FINISH_QUIZ_BUTTON_ID } from '../constants.js';
  * Create a full question element
  * @returns {Element}
  */
+
 export const createQuestionElement = (question, quizData) => {
   const element = document.createElement('div');
 

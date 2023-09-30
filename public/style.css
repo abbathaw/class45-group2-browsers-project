@@ -38,6 +38,7 @@ h1 {
   color: white;
 }
 
+#skipBox,
 #start-quiz-button {
   padding: 18px 90px;
   border: solid 3px #636fb2;

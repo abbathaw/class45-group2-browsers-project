@@ -13,3 +13,4 @@ export const SCORE_ID = 'score-card';
 export const SKIP_QUESTION_BUTTON_ID = 'skip-question-button';
 export const FINISH_QUIZ_BUTTON_ID = 'finish-quiz-button';
 export const TIMER_ID = 'timer-count';
+export const SAVE_NAME = 'savedQuizData';

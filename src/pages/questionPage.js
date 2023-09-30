@@ -7,11 +7,14 @@ import {
   TIMER_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
-import { quizData } from '../data.js';
-import { transitionQuestionWithFade } from './transition.js';
-import { showResultPage } from '../pages/resultPage.js';
 
-export const initQuestionPage = () => {
+import { transitionQuestionWithFade } from './transition.js';
+
+import { showResultPage } from '../pages/resultPage.js';
+import { getQuizData, saveQuizData } from '../data.js';
+
+const quizData = getQuizData();
+export const initQuestionPage = (isRefresh = false) => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
   const questionAnswerElement = createQuestionElement(
@@ -19,7 +22,7 @@ export const initQuestionPage = () => {
     quizData
   );
 
-  if (quizData.currentQuestionIndex === 0) {
+  if (quizData.currentQuestionIndex === 0 || isRefresh) {
     userInterface.innerHTML = '';
     userInterface.appendChild(questionAnswerElement);
   }
@@ -112,12 +115,15 @@ export const skipQuestion = () => {
 
   if (currentQuestion) {
     const skipBox = document.createElement('div');
+    skipBox.id = 'skipBox'; // Add this line here
 
     document.body.appendChild(skipBox);
 
-    skipBox.innerText = `🦉${currentQuestion.correct}`.toUpperCase();
+    skipBox.innerText = ` The right answer for question ${
+      quizData.currentQuestionIndex + 1
+    } is: ${currentQuestion.correct}. `;
 
-    skipBox.style.cssText = `  font-size: 129px;`; // * need Style
+    // skipBox.style.cssText = ``;
 
     if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
       disableNextButton();
@@ -130,11 +136,6 @@ export const skipQuestion = () => {
 
   nextQuestion();
 };
-
-//SCORE update in real-time
-const scoreUpdate = () => (quizData.score = 0);
-
-scoreUpdate();
 
 export const scoreRealTimeUpdate = () => {
   const scoreDisplay = document.getElementById(SCORE_ID);
@@ -174,7 +175,7 @@ const startTimer = () => {
 
 export const nextQuestion = (currentQuestion) => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
-
+  saveQuizData(quizData);
   const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
   if (!nextQuestion) {
     showResultPage();
@@ -183,5 +184,6 @@ export const nextQuestion = (currentQuestion) => {
 
   const questionAnswerElement = createQuestionElement(nextQuestion, quizData);
   transitionQuestionWithFade(currentQuestion, questionAnswerElement);
+
   initQuestionPage();
 };
