@@ -1,5 +1,4 @@
 import {
-  ANSWERS_LIST_ID,
   NEXT_QUESTION_BUTTON_ID,
   SCORE_ID,
   SKIP_QUESTION_BUTTON_ID,
@@ -8,33 +7,31 @@ import {
   TIMER_ID,
 } from '../constants.js';
 import { createQuestionElement } from '../views/questionView.js';
-import { createAnswerElement } from '../views/answerView.js';
+
+import { transitionQuestionWithFade } from './transition.js';
+
 import { showResultPage } from '../pages/resultPage.js';
 import { getQuizData, saveQuizData } from '../data.js';
 
 const quizData = getQuizData();
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
-  userInterface.innerHTML = '';
-
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
+  const questionAnswerElement = createQuestionElement(
+    currentQuestion,
+    quizData
+  );
 
-  const questionElement = createQuestionElement(currentQuestion.text);
-
-  userInterface.appendChild(questionElement);
-
-  const answersListElement = document.getElementById(ANSWERS_LIST_ID);
-
-  for (const [key, answerText] of Object.entries(currentQuestion.answers)) {
-    const answerElement = createAnswerElement(key, answerText);
-    answersListElement.appendChild(answerElement);
+  if (quizData.currentQuestionIndex === 0) {
+    userInterface.innerHTML = '';
+    userInterface.appendChild(questionAnswerElement);
   }
-
-  startTimer();
 
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', nextQuestion);
+    .addEventListener('click', () => nextQuestion(questionAnswerElement));
+
+  startTimer();
 
   document
     .getElementById(SKIP_QUESTION_BUTTON_ID)
@@ -55,9 +52,9 @@ export const initQuestionPage = () => {
       .addEventListener('click', disableNextButton);
   }
 
-  if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
-    disableNextButton();
-  }
+  // if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+  //   disableNextButton();
+  // }
 };
 
 export const selectAnswer = (e) => {
@@ -111,11 +108,11 @@ const resetAnswerColorClasses = () => {
   );
 };
 
-const nextQuestion = () => {
-  quizData.currentQuestionIndex += 1;
-  saveQuizData(quizData);
-  initQuestionPage();
-};
+// const nextQuestion = () => {
+//   quizData.currentQuestionIndex += 1;
+//   saveQuizData(quizData);
+//   initQuestionPage();
+// };
 
 const disableNextButton = () => {
   let nextButton = document.getElementById(NEXT_QUESTION_BUTTON_ID);
@@ -123,29 +120,27 @@ const disableNextButton = () => {
 };
 
 // *  #14: SKIP BUTTON
-const skipQuestion = () => {
+export const skipQuestion = () => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   if (currentQuestion) {
     const skipBox = document.createElement('div');
+    skipBox.id = 'skipBox'; // Add this line here
 
     document.body.appendChild(skipBox);
 
-    skipBox.innerText = `The right answer for question:  ${
+    skipBox.innerText = ` The right answer for question ${
       quizData.currentQuestionIndex + 1
-    } is: ${currentQuestion.correct}`;
+    } is: ${currentQuestion.correct}. `;
 
-    // * need Style
-    skipBox.style.cssText = `    
-      font-size: 29px;
-      `;
+    // skipBox.style.cssText = ``;
 
+    if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+      disableNextButton();
+    }
     // to remove after 2.5 seconds
     setTimeout(() => {
       document.body.removeChild(skipBox);
-      if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
-        disableNextButton();
-      }
     }, 2500);
   }
 
@@ -191,4 +186,19 @@ const startTimer = () => {
       }, 1000);
     }
   }, 1000);
+};
+
+export const nextQuestion = (currentQuestion) => {
+  quizData.currentQuestionIndex += 1;
+  saveQuizData(quizData);
+  const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
+  if (!nextQuestion) {
+    showResultPage();
+    return;
+  }
+
+  const questionAnswerElement = createQuestionElement(nextQuestion, quizData);
+  transitionQuestionWithFade(currentQuestion, questionAnswerElement);
+
+  initQuestionPage();
 };

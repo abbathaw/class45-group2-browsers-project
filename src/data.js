@@ -68,29 +68,29 @@ const quizData = {
       correct: 'b',
       selected: null,
     },
-    // {
-    //   text:
-    //     "Which Dutch artist painted 'The Night Watch,' one of the most famous works in the Rijksmuseum in Amsterdam?",
-    //   answers: {
-    //     a: 'Vincent van Gogh',
-    //     b: 'Rembrandt',
-    //     c: 'Piet Mondrian',
-    //     d: 'Johannes Vermeer',
-    //   },
-    //   correct: 'b',
-    //   selected: null,
-    // },
-    // {
-    //   text: 'What is the currency of the Netherlands?',
-    //   answers: {
-    //     a: 'Euro',
-    //     b: 'Guilder',
-    //     c: 'Franc',
-    //     d: 'Mark',
-    //   },
-    //   correct: 'a',
-    //   selected: null,
-    // },
+    {
+      text:
+        "Which Dutch artist painted 'The Night Watch,' one of the most famous works in the Rijksmuseum in Amsterdam?",
+      answers: {
+        a: 'Vincent van Gogh',
+        b: 'Rembrandt',
+        c: 'Piet Mondrian',
+        d: 'Johannes Vermeer',
+      },
+      correct: 'b',
+      selected: null,
+    },
+    {
+      text: 'What is the currency of the Netherlands?',
+      answers: {
+        a: 'Euro',
+        b: 'Guilder',
+        c: 'Franc',
+        d: 'Mark',
+      },
+      correct: 'a',
+      selected: null,
+    },
     // {
     //   text:
     //     'The Netherlands is known for its production of vibrant, colorful flower fields. What flower is particularly associated with the country?',
