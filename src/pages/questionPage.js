@@ -14,16 +14,19 @@ import { showResultPage } from '../pages/resultPage.js';
 export const initQuestionPage = () => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
-  const questionAnswerElement = createQuestionElement(currentQuestion, quizData);
- 
-  if(quizData.currentQuestionIndex === 0){
+  const questionAnswerElement = createQuestionElement(
+    currentQuestion,
+    quizData
+  );
+
+  if (quizData.currentQuestionIndex === 0) {
     userInterface.innerHTML = '';
     userInterface.appendChild(questionAnswerElement);
   }
 
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', ()=>nextQuestion(questionAnswerElement));
+    .addEventListener('click', () => nextQuestion(questionAnswerElement));
 
   startTimer();
 
@@ -45,8 +48,6 @@ export const initQuestionPage = () => {
       .getElementById(NEXT_QUESTION_BUTTON_ID)
       .addEventListener('click', disableNextButton);
   }
-
-  
 };
 
 export const selectAnswer = (e) => {
@@ -118,12 +119,12 @@ export const skipQuestion = () => {
 
     skipBox.style.cssText = `  font-size: 129px;`; // * need Style
 
+    if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
+      disableNextButton();
+    }
     // to remove after 2.5 seconds
     setTimeout(() => {
       document.body.removeChild(skipBox);
-      if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
-        disableNextButton();
-      }
     }, 2500);
   }
 
@@ -174,9 +175,13 @@ const startTimer = () => {
 export const nextQuestion = (currentQuestion) => {
   quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
 
-const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
-const questionAnswerElement = createQuestionElement(nextQuestion, quizData);
-  transitionQuestionWithFade(currentQuestion, questionAnswerElement );
+  const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
+  if (!nextQuestion) {
+    showResultPage();
+    return;
+  }
+
+  const questionAnswerElement = createQuestionElement(nextQuestion, quizData);
+  transitionQuestionWithFade(currentQuestion, questionAnswerElement);
   initQuestionPage();
 };
-
