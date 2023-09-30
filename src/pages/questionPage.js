@@ -14,7 +14,7 @@ import { showResultPage } from '../pages/resultPage.js';
 import { getQuizData, saveQuizData } from '../data.js';
 
 const quizData = getQuizData();
-export const initQuestionPage = () => {
+export const initQuestionPage = (isRefresh=false) => {
   const userInterface = document.getElementById(USER_INTERFACE_ID);
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
   const questionAnswerElement = createQuestionElement(
@@ -22,7 +22,7 @@ export const initQuestionPage = () => {
     quizData
   );
 
-  if (quizData.currentQuestionIndex === 0) {
+  if (quizData.currentQuestionIndex === 0 || isRefresh) {
     userInterface.innerHTML = '';
     userInterface.appendChild(questionAnswerElement);
   }
@@ -148,9 +148,9 @@ export const skipQuestion = () => {
 };
 
 //SCORE update in real-time
-const scoreUpdate = () => (quizData.score = 0);
+// const scoreUpdate = () => (quizData.score = 0);
 
-scoreUpdate();
+// scoreUpdate();
 
 export const scoreRealTimeUpdate = () => {
   const scoreDisplay = document.getElementById(SCORE_ID);
@@ -189,7 +189,7 @@ const startTimer = () => {
 };
 
 export const nextQuestion = (currentQuestion) => {
-  quizData.currentQuestionIndex += 1;
+  quizData.currentQuestionIndex = quizData.currentQuestionIndex + 1;
   saveQuizData(quizData);
   const nextQuestion = quizData.questions[quizData.currentQuestionIndex];
   if (!nextQuestion) {

@@ -4,14 +4,12 @@ import { NEXT_QUESTION_BUTTON_ID } from '../constants.js';
 import { createAnswerElement } from './answerView.js';
 import { FINISH_QUIZ_BUTTON_ID } from '../constants.js';
 
-import { getQuizData } from '../data.js';
 
 /**
  * Create a full question element
  * @returns {Element}
  */
 
-const quizData = getQuizData();
 
 export const createQuestionElement = (question, quizData) => {
   const element = document.createElement('div');
