@@ -115,9 +115,9 @@ export const skipQuestion = () => {
 
     document.body.appendChild(skipBox);
 
-    skipBox.innerText = `🦉${currentQuestion.correct}`.toUpperCase();
+    skipBox.innerText = `${currentQuestion.correct}`.toUpperCase();
 
-    skipBox.style.cssText = `  font-size: 129px;`; // * need Style
+    skipBox.style.cssText = `  font-size: 29px;`; // * need Style
 
     if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
       disableNextButton();
