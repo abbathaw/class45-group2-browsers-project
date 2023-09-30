@@ -19,11 +19,12 @@ export const createQuestionElement = (question, quizData) => {
     quizData.questions.length
   }</p>
       </div>
-    <h1>${question.text}</h1>
+    <img class="question-mark" src = "./public/files/ask.png" alt="Question Mark"/>
+    <h1 class='question-title'>${question.text}</h1>
 
     <ul id="${ANSWERS_LIST_ID}">
     </ul>
-
+<div class='navigation-buttons'>
     <button id="${SKIP_QUESTION_BUTTON_ID}"> 
     Skip 
     </button>
@@ -35,7 +36,7 @@ export const createQuestionElement = (question, quizData) => {
     <button id="${FINISH_QUIZ_BUTTON_ID}">
      Finish quiz
     </button>
-
+</div>
     <p id="${SCORE_ID}">
       SCORE: ${quizData.score}
     </p>
@@ -49,7 +50,7 @@ export const createQuestionElement = (question, quizData) => {
   for (const [key, answerText] of Object.entries(question.answers)) {
     const liElement = createAnswerElement(key, answerText);
     ulElement.appendChild(liElement);
-  };
+  }
 
   return element;
-}; 
+};
