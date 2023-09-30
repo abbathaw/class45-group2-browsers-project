@@ -131,9 +131,9 @@ const skipQuestion = () => {
 
     document.body.appendChild(skipBox);
 
-    skipBox.innerText = `The right answer is: ${
-      currentQuestion.correct
-    } for question: ${quizData.currentQuestionIndex + 1}`;
+    skipBox.innerText = `The right answer for question:  ${
+      quizData.currentQuestionIndex + 1
+    } is: ${currentQuestion.correct}`;
 
     // * need Style
     skipBox.style.cssText = `    
