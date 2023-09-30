@@ -7,7 +7,7 @@ const loadApp = () => {
   if (quizData.currentQuestionIndex === 0) {
     initWelcomePage();
   } else {
-    initQuestionPage();
+    initQuestionPage(true);
   }
 };
 

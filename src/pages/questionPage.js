@@ -184,6 +184,5 @@ export const nextQuestion = (currentQuestion) => {
 
   const questionAnswerElement = createQuestionElement(nextQuestion, quizData);
   transitionQuestionWithFade(currentQuestion, questionAnswerElement);
-
   initQuestionPage();
 };
