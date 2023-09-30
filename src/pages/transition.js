@@ -13,7 +13,7 @@ export const transitionQuestionWithFade = (currentQuestionElement, nextQuestionE
 
   setTimeout(() => {
     // Removing the current question element
-    userInterface.removeChild(currentQuestionElement);
+    userInterface.innerHTML = '';
 
     // Adding the fade-in class to the next question
     nextQuestionElement.classList.add('question-fade-enter');
@@ -27,7 +27,7 @@ export const transitionQuestionWithFade = (currentQuestionElement, nextQuestionE
 
     document
     .getElementById(SKIP_QUESTION_BUTTON_ID)
-    .addEventListener('click', skipQuestion);
+    .addEventListener('click', ()=>skipQuestion(nextQuestionElement));
 
     document
     .getElementById(FINISH_QUIZ_BUTTON_ID)
