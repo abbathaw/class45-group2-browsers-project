@@ -93,64 +93,64 @@ const quizData = {
       correct: 'a',
       selected: null,
     },
-    // {
-    //   text:
-    //     'The Netherlands is known for its production of vibrant, colorful flower fields. What flower is particularly associated with the country?',
-    //   answers: {
-    //     a: 'Roses',
-    //     b: 'Sunflowers',
-    //     c: 'Tulips',
-    //     d: 'Daisies',
-    //   },
-    //   correct: 'c',
-    //   selected: null,
-    // },
-    // {
-    //   text:
-    //     'Which Dutch scientist is famous for his contributions to microbiology, including the discovery of bacteria and microscopy techniques?',
-    //   answers: {
-    //     a: 'Antonie van Leeuwenhoek',
-    //     b: 'Christiaan Huygens',
-    //     c: 'René Descartes',
-    //     d: 'Johannes Kepler',
-    //   },
-    //   correct: 'a',
-    //   selected: null,
-    // },
-    // {
-    //   text: 'The Dutch Royal Family belongs to which dynasty?',
-    //   answers: {
-    //     a: 'Bourbon',
-    //     b: 'Habsburg',
-    //     c: 'Orange-Nassau',
-    //     d: 'Tudor',
-    //   },
-    //   correct: 'c',
-    //   selected: null,
-    // },
-    // {
-    //   text:
-    //     'What is the name of the Dutch parliamentary body responsible for making and passing laws?',
-    //   answers: {
-    //     a: 'Royal Council',
-    //     b: 'Parliament of the Netherlands',
-    //     c: 'States General',
-    //     d: 'Dutch Congress',
-    //   },
-    //   correct: 'c',
-    //   selected: null,
-    // },
-    // {
-    //   text:
-    //     "Which Dutch city is renowned for its high-tech industries, including ASML, one of the world's leading semiconductor equipment manufacturers?",
-    //   answers: {
-    //     a: 'Eindhoven',
-    //     b: 'Groningen',
-    //     c: 'Maastricht',
-    //     d: 'Nijmegen',
-    //   },
-    //   correct: 'a',
-    //   selected: null,
-    // },
+    {
+      text:
+        'The Netherlands is known for its production of vibrant, colorful flower fields. What flower is particularly associated with the country?',
+      answers: {
+        a: 'Roses',
+        b: 'Sunflowers',
+        c: 'Tulips',
+        d: 'Daisies',
+      },
+      correct: 'c',
+      selected: null,
+    },
+    {
+      text:
+        'Which Dutch scientist is famous for his contributions to microbiology, including the discovery of bacteria and microscopy techniques?',
+      answers: {
+        a: 'Antonie van Leeuwenhoek',
+        b: 'Christiaan Huygens',
+        c: 'René Descartes',
+        d: 'Johannes Kepler',
+      },
+      correct: 'a',
+      selected: null,
+    },
+    {
+      text: 'The Dutch Royal Family belongs to which dynasty?',
+      answers: {
+        a: 'Bourbon',
+        b: 'Habsburg',
+        c: 'Orange-Nassau',
+        d: 'Tudor',
+      },
+      correct: 'c',
+      selected: null,
+    },
+    {
+      text:
+        'What is the name of the Dutch parliamentary body responsible for making and passing laws?',
+      answers: {
+        a: 'Royal Council',
+        b: 'Parliament of the Netherlands',
+        c: 'States General',
+        d: 'Dutch Congress',
+      },
+      correct: 'c',
+      selected: null,
+    },
+    {
+      text:
+        "Which Dutch city is renowned for its high-tech industries, including ASML, one of the world's leading semiconductor equipment manufacturers?",
+      answers: {
+        a: 'Eindhoven',
+        b: 'Groningen',
+        c: 'Maastricht',
+        d: 'Nijmegen',
+      },
+      correct: 'a',
+      selected: null,
+    },
   ],
 };
