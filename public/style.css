@@ -117,12 +117,12 @@ ul {
   text-align: center;
   font-size: 3rem;
   margin: 10px;
-  color: #d83f31;
+  color: #ffffff;
   font-family: math;
 }
 
 .correct-answer-number h2 {
-  color: #d83f31;
+  color: #ffffff;
   font-family: math;
   letter-spacing: 0.2px;
   font-weight: bold;
@@ -171,7 +171,6 @@ h1.question-title {
   opacity: 0;
 }
 
-
 .question-fade-enter {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
@@ -180,7 +179,6 @@ h1.question-title {
 .question-fade-enter-active {
   opacity: 1;
 }
-
 
 #timer-count {
   margin-top: 0px;
