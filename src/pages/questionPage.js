@@ -31,11 +31,11 @@ export const initQuestionPage = (isRefresh = false) => {
     .getElementById(NEXT_QUESTION_BUTTON_ID)
     .addEventListener('click', () => nextQuestion(questionAnswerElement));
 
-  startTimer();
+  startTimer(questionAnswerElement);
 
   document
     .getElementById(SKIP_QUESTION_BUTTON_ID)
-    .addEventListener('click', skipQuestion);
+    .addEventListener('click', () => skipQuestion(questionAnswerElement));
 
   document
     .getElementById(FINISH_QUIZ_BUTTON_ID)
@@ -110,7 +110,7 @@ const disableNextButton = () => {
 };
 
 // *  #14: SKIP BUTTON
-export const skipQuestion = () => {
+export const skipQuestion = (currentQuestionToSkip) => {
   const currentQuestion = quizData.questions[quizData.currentQuestionIndex];
 
   if (currentQuestion) {
@@ -134,7 +134,7 @@ export const skipQuestion = () => {
     }, 2500);
   }
 
-  nextQuestion();
+  nextQuestion(currentQuestionToSkip);
 };
 
 export const scoreRealTimeUpdate = () => {
@@ -151,7 +151,7 @@ correctAnswers();
 let count;
 let interval;
 
-const startTimer = () => {
+const startTimer = (currentQuestion) => {
   count = 16;
   clearInterval(interval);
 
@@ -166,7 +166,7 @@ const startTimer = () => {
         if (quizData.currentQuestionIndex >= quizData.questions.length - 1) {
           showResultPage();
         } else {
-          nextQuestion();
+          nextQuestion(currentQuestion);
         }
       }, 1000);
     }
