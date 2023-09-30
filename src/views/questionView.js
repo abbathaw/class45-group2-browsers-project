@@ -20,7 +20,7 @@ export const createQuestionElement = (question, quizData) => {
   }</p>
       </div>
     <img class="question-mark" src = "./public/files/ask.png" alt="Question Mark"/>
-    <h1 class='question-title'>${question.text}</h1>
+    <h1 class='question-title'>${question?.text}</h1>
 
     <ul id="${ANSWERS_LIST_ID}">
     </ul>
