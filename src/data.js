@@ -29,7 +29,9 @@ export const resetLocalStorage = () => {
 };
 
 const quizData = {
+  score: 0,
   currentQuestionIndex: 0,
+
   // the questions in the quiz
   questions: [
     {
