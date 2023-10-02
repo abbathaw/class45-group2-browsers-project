@@ -15,16 +15,24 @@ export const createQuestionElement = (question, quizData) => {
   // I use String.raw just to get fancy colors for the HTML in VS Code.
 
   element.innerHTML = String.raw`
+
+
     <div >
-    <p> YOU ARE ON ${quizData.currentQuestionIndex + 1}/${
+    <p> YOU ARE ON ${quizData.currentQuestionIndex + 1} of: ${
     quizData.questions.length
   }</p>
       </div>
     <img class="question-mark" src = "./public/files/ask.png" alt="Question Mark"/>
     <h1 class='question-title'>${question?.text}</h1>
 
+    <div>
+    <p id="${TIMER_ID}">
+      Start
+    </p>
+    </div>
     <ul id="${ANSWERS_LIST_ID}">
     </ul>
+    
 <div class='navigation-buttons'>
     <button id="${SKIP_QUESTION_BUTTON_ID}"> 
     Skip 
@@ -38,13 +46,11 @@ export const createQuestionElement = (question, quizData) => {
      Finish quiz
     </button>
 </div>
-    <p id="${SCORE_ID}">
-      SCORE: ${quizData.score}
-    </p>
-
-    <p id="${TIMER_ID}">
-      Start
-    </p>
+<div>
+<p id="${SCORE_ID}">
+SCORE: ${quizData.score}
+</p>
+</div>
   `;
 
   const ulElement = element.querySelector(`#${ANSWERS_LIST_ID}`);
